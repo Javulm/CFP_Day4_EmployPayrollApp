@@ -8,6 +8,6 @@ public class EmployPayrollAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployPayrollAppApplication.class, args);
-	}
 
+	}
 }
