@@ -17,7 +17,11 @@ public class EmployeePayrollController {
     @Autowired
     private IEmployeePayrollService employeePayrollService;
 
-    @GetMapping(value = {"", "/", "/get"})
+    /**
+     * show all employee data in the list
+     * @return employee data list
+     */
+    @GetMapping(value = {"", "/", "/getall"})
     public ResponseEntity<ResponseDto> getEmployeePayrollData() {
         List<EmployeePayrollData> empDataList = null;
         empDataList = employeePayrollService.getEmployeePayrollData();
@@ -59,9 +63,9 @@ public class EmployeePayrollController {
      */
     @PutMapping(path = "/update/{empId}", consumes = {"application/json"})
     public ResponseEntity<ResponseDto> updateEmployeePayrollData(@PathVariable("empId") int empId, @RequestBody EmployeePayrollDto empPayrollDto) {
-        EmployeePayrollData empData = null;
-        empData = employeePayrollService.updateEmployeePayrollData(empPayrollDto);
-        ResponseDto respDTO = new ResponseDto("Updated Employee payroll Data successfully ", empData);
+       EmployeePayrollData employeePayrollData = null;
+       employeePayrollData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDto);
+       ResponseDto respDTO = new ResponseDto("Updated Employee payroll data successfully",employeePayrollData);
         return new ResponseEntity<ResponseDto>(respDTO, HttpStatus.OK);
     }
 
