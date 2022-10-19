@@ -45,6 +45,19 @@ public class EmployeePayrollController {
 
     /**
      *
+     * @param department
+     * Show employee data by department using get mapping
+     */
+    @GetMapping("/department/{department}")
+    public ResponseEntity<ResponseDto> getEmployeePayrollData(@PathVariable("department") String department){
+        List<EmployeePayrollData> empDataList = null;
+        empDataList = employeePayrollService.findEmployeesByDepartment(department);
+        ResponseDto respDTO = new ResponseDto("Get call for Id successfully", empDataList);
+        return new ResponseEntity<ResponseDto>(respDTO, HttpStatus.OK);
+    }
+
+    /**
+     *
      * @param empPayrollDto
      * Creating employee data using Post mapping
      */
