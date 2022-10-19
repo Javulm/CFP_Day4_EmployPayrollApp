@@ -8,6 +8,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +22,10 @@ public class EmployeePayrollDto {
     @Max(value = 1000000, message = "maximum wage should not exceed than 1000000")
     @Min(value = 500, message = "minimum wage should be more than 500.")
     private long salary;
+    private String gender;
+    private String startDate;
+    private String note;
+    private String profilePic;
+    private List<String> departments;
 
 }
