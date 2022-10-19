@@ -1,17 +1,23 @@
 package com.bridgelabz.employpayrollapp.model;
 
 import com.bridgelabz.employpayrollapp.dto.EmployeePayrollDto;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@ToString
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "employee_payroll")
 public class EmployeePayrollData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "employee_id")
     private int employeeId;
     private String name;
     private long salary;
@@ -19,12 +25,17 @@ public class EmployeePayrollData {
     private LocalDate startDate;
     private String note;
     private String profilePic;
+    @ElementCollection
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "department")
     private List<String> departments;
 
+    public EmployeePayrollData (EmployeePayrollDto employeePayrollDto){
+        this.UpdateEmployeePayrollData(employeePayrollDto);
+    }
 
-    public EmployeePayrollData(int empId, EmployeePayrollDto employeePayrollDto)
+    public void UpdateEmployeePayrollData(EmployeePayrollDto employeePayrollDto)
     {
-        this.employeeId = empId;
         this.name = employeePayrollDto.getName();
         this.salary = employeePayrollDto.getSalary();
         this.gender = employeePayrollDto.getGender();
