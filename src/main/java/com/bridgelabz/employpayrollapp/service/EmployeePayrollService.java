@@ -32,8 +32,8 @@ public class EmployeePayrollService implements IEmployeePayrollService{
     @Override
     public EmployeePayrollData updateEmployeePayrollData(int empId, EmployeePayrollDto empPayrollDto) {
         EmployeePayrollData empData = this.getEmployeePayrollDataById(empId);
-        empData.setName(empPayrollDto.name);
-        empData.setSalary(empPayrollDto.salary);
+        empData.setName(empPayrollDto.getName());
+        empData.setSalary(empPayrollDto.getSalary());
         employeePayrollList.set(empId-1, empData);
         return empData;
     }

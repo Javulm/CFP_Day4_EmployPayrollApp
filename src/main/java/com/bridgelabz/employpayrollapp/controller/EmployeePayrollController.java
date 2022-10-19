@@ -63,7 +63,7 @@ public class EmployeePayrollController {
      * Updating employee data using path variable and request body by put method
      */
     @PutMapping(path = "/update/{empId}", consumes = {"application/json"})
-    public ResponseEntity<ResponseDto> updateEmployeePayrollData(@PathVariable("empId") int empId, @RequestBody EmployeePayrollDto empPayrollDto) {
+    public ResponseEntity<ResponseDto> updateEmployeePayrollData(@PathVariable("empId") int empId, @Valid @RequestBody EmployeePayrollDto empPayrollDto) {
        EmployeePayrollData employeePayrollData = null;
        employeePayrollData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDto);
        ResponseDto respDTO = new ResponseDto("Updated Employee payroll data successfully",employeePayrollData);
